@@ -1,0 +1,21 @@
+{% extends "./layouts/app.jinja2" %}
+
+{% block title %}Home{% endblock %}
+
+{% block head %}
+{{ super() }}
+
+{% endblock %}
+{% block content %}
+
+<br />
+
+<h1>Home</h1>
+
+<p class="important">
+    Welcome to my awesome homepage. {{ user.name }}
+</p>
+
+<br />
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "./layouts/app.jinja2" %}
+
+{% block title %}Login{% endblock %}
+
+{% block head %}
+    {{ super() }}
+
+{% endblock %}
+{% block content %}
+
+    <br/>
+
+    <h1 class="text-center">Login</h1>
+
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <form action="/auth/login" method="post">
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp"
+                           placeholder="Enter email">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                </div>
+                {% include 'layouts/partials/errors.jinja2' %}
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+
+
+    <br class="mb-5"/>
+
+{% endblock %}
