@@ -1,0 +1,27 @@
+{% extends "layouts/app.jinja2" %}
+
+{% block title %}Categories{% endblock %}
+
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+
+<br />
+
+<h1>Categories</h1>
+
+<p class="important">
+    A list of Categories
+    <a href="{{ url_for('categories.create') }}"><button class="btn btn-success">Add</button></a>
+</p>
+
+    <ul class="list-group">
+        {% for category in categories %}
+            <a href="/categories/{{ category[1] }}" class="list-group-item list-group-item-action">{{ category[1] }}</a>
+        {% endfor %}
+    </ul>
+
+<br />
+
+{% endblock %}

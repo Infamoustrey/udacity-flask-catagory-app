@@ -1,0 +1,26 @@
+{% extends "layouts/app.jinja2" %}
+
+{% block title %}Categories{% endblock %}
+
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+
+    <br/>
+
+    <h1>Add A Category</h1>
+
+    <form action="{{ url_for('categories.create') }}" method="post">
+        <div class="form-group">
+            <label for="name">Category Name</label>
+            <input type="text" class="form-control" name="name" id="name" placeholder="Category Name, ex: Snowboarding...">
+        </div>
+        {% include 'layouts/partials/errors.jinja2' %}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+
+    <br/>
+
+{% endblock %}

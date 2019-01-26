@@ -22,16 +22,16 @@ def login_required(view):
         return view
 
 
-@bp.before_app_request
-def serialize_user():
-    user_id = session.get('user_id')
-
-    if user_id is None:
-        g.user = None
-    else:
-        g.user = create_connection().execute(
-            'SELECT * FROM users WHERE id = ?', (user_id,)
-        ).fetchone()
+# @bp.before_app_request
+# def serialize_user():
+#     user_id = session.get('user_id')
+#
+#     if user_id is None:
+#         g.user = None
+#     else:
+#         g.user = create_connection().execute(
+#             'SELECT * FROM users WHERE id = ?', (user_id,)
+#         ).fetchone()
 
 
 @bp.route('/register', methods=('GET', 'POST'))

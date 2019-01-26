@@ -1,6 +1,7 @@
-from flask import Flask, render_template, g
+from flask import Flask, render_template, g, session
 import jinja2
-import auth
+from db import create_connection
+import auth, categories
 
 # create and configure the app
 app = Flask(__name__, instance_relative_config=True)
@@ -16,6 +17,18 @@ app.jinja_loader = jinja2.ChoiceLoader([
 ])
 
 
+@app.before_request
+def serialize_user():
+    user_id = session.get('user_id')
+
+    if user_id is None:
+        g.user = None
+    else:
+        g.user = create_connection().execute(
+            'SELECT * FROM users WHERE id = ?', (user_id,)
+        ).fetchone()
+
+
 # Index
 @app.route('/')
 def index():
@@ -23,6 +36,7 @@ def index():
 
 
 app.register_blueprint(auth.bp)
+app.register_blueprint(categories.bp)
 
 
 if __name__ == '__main__':

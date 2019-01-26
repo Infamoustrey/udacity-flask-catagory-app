@@ -11,8 +11,12 @@ CREATE TABLE users (
 
 CREATE TABLE categories (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  name VARCHAR(255) NOT NULL
+  name VARCHAR(255) UNIQUE NOT NULL
 );
+
+INSERT INTO categories
+(name)
+VALUES ('Snowboarding'), ('Skateboarding'), ('Gardening'), ('Science'), ('Cinema');
 
 CREATE TABLE items (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
