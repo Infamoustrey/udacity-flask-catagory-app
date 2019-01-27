@@ -11,6 +11,11 @@
 
 <h1>#{{ category[0] }} - {{ category[1] }}</h1>
 
+    <a href="{{ url_for('categories.delete', category_name=category[1]) }}" class="btn btn-danger">Remove</a>
+    <a href="{{ url_for('items.create', category_name=category[1]) }}" class="btn btn-danger">Add Item</a>
+
+
+
 <br />
 
 {% endblock %}

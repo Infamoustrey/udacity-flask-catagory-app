@@ -3,7 +3,7 @@ from flask import (
 )
 from db import create_connection
 
-bp = Blueprint('categories', __name__, url_prefix='/categories')
+bp = Blueprint('items', __name__, url_prefix='/items')
 
 
 def login_required(view):
@@ -16,35 +16,17 @@ def login_required(view):
 @bp.route('/', methods=('GET', 'POST'))
 def index():
     get_categories = create_connection().execute(
-            'SELECT id, name FROM categories'
+            'SELECT * FROM items'
         ).fetchall()
     return render_template('categories/index.jinja2', categories=get_categories)
 
 
-@bp.route('/<string:category_name>')
+@bp.route('/<category_name>')
 def show(category_name):
     category = create_connection().execute(
             'SELECT id, name FROM categories where name = ?', (category_name,)
         ).fetchone()
-    items = create_connection().execute(
-            'SELECT id, description FROM items where category = ?', (category[0],)
-        ).fetchone()
-    return render_template('categories/show.jinja2', category=category, items=items)
-
-
-@bp.route('/<string:category_name>/delete', methods=('GET', 'POST'))
-def delete(category_name):
-    if request.method == 'POST':
-        db = create_connection()
-        db.execute('DELETE FROM categories where name = ?', (category_name,))
-        db.commit()
-        return redirect(url_for('categories.index'))
-
-
-    category = create_connection().execute(
-            'SELECT id, name FROM categories where name = ?', (category_name,)
-        ).fetchone()
-    return render_template('categories/delete.jinja2', category=category)
+    return render_template('categories/show.jinja2', category=category)
 
 
 @bp.route('/create', methods=('GET', 'POST'))
