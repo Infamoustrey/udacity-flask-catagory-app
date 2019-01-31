@@ -1,0 +1,24 @@
+{% extends "layouts/app.jinja2" %}
+
+{% block title %}Categories{% endblock %}
+
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+
+    <br />
+
+    <h1>{{ category[1] }}</h1>
+    <h5>Are you sure you wish to delete this category?</h5>
+
+    <form action="{{ url_for('categories.delete', category_name=category[1]) }}" method="post">
+        {% include 'layouts/partials/errors.jinja2' %}
+        <button type="submit" class="btn btn-danger">Yes</button>
+        <a href="{{ url_for('categories.index') }}" class="btn btn-primary">Cancel</a>
+    </form>
+
+
+    <br/>
+
+{% endblock %}

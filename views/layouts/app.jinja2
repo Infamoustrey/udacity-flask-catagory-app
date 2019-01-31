@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="h-100">
 <head>
     {% block head %}
     <meta charset="utf-8">
@@ -11,13 +11,14 @@
 
     {% endblock %}
 </head>
-<body>
+<body class="d-flex flex-column h-100">
 
 {% include 'layouts/partials/navbar.jinja2' %}
 
-<div class="container">
-
-    {% block content %}{% endblock %}
+<div class="flex-shrink-0">
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
 </div>
 
 {% include 'layouts/partials/footer.jinja2' %}

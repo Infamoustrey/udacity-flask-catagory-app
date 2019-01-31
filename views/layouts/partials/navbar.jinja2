@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-    <a class="navbar-brand" href="/">Catalog App</a>
+    <a class="navbar-brand" href="/">Catalog App</a> Hey {% if g.user %} {{ g.user[2].split(' ')[0] }} {% endif %}
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -8,8 +8,13 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <div class="form-inline ml-auto my-2 my-lg-0">
-            <a href="{{ url_for('auth.login') }}"><button class="btn btn-success my-2 my-sm-0 mr-2">Login</button></a>
-            <a href="{{ url_for('auth.register') }}"><button class="btn btn-danger my-2 my-sm-0">Register</button></a>
+            {% if g.user %}
+                <a href="{{ url_for('auth.logout') }}"><button class="btn btn-danger my-2 my-sm-0 mr-2">Logout</button></a>
+            {% endif %}
+            {% if not g.user %}
+                <a href="{{ url_for('auth.login') }}"><button class="btn btn-success my-2 my-sm-0 mr-2">Login</button></a>
+                <a href="{{ url_for('auth.register') }}"><button class="btn btn-danger my-2 my-sm-0">Register</button></a>
+            {% endif %}
         </div>
     </div>
 

@@ -1,6 +1,6 @@
 {% extends "layouts/app.jinja2" %}
 
-{% block title %}Categories{% endblock %}
+{% block title %}Item{% endblock %}
 
 {% block head %}
 {{ super() }}
@@ -9,7 +9,13 @@
 
 <br />
 
-<h1>#{{ category[0] }} - {{ category[1] }}</h1>
+<h1>#{{ item[0] }} - {{ item[1] }}</h1>
+
+    <p>{{ item[2] }}</p>
+
+    {% if g.user[0] == item[4] %}
+        <a href="{{ url_for('items.update', item_title=item[1]) }}" class="btn btn-primary text-white">Edit</a>
+    {% endif %}
 
 <br />
 

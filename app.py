@@ -1,7 +1,9 @@
 from flask import Flask, render_template, g, session
 import jinja2
 from db import create_connection
-import auth, categories
+
+# Modules
+import auth, categories, items
 
 # create and configure the app
 app = Flask(__name__, instance_relative_config=True)
@@ -37,6 +39,7 @@ def index():
 
 app.register_blueprint(auth.bp)
 app.register_blueprint(categories.bp)
+app.register_blueprint(items.bp)
 
 
 if __name__ == '__main__':

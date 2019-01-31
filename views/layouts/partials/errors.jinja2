@@ -3,7 +3,13 @@
         <div class="alert alert-danger" role="alert">
             <ul class="list-unstyled">
                 {% for message in messages %}
-                    <li>{{ message }}</li>
+                    {% if message is not iterable %}
+                        <li>{{ message }}</li>
+                    {% else %}
+                        {% for error in message %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    {% endif %}
                 {% endfor %}
             </ul>
         </div>

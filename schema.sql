@@ -20,8 +20,8 @@ VALUES ('Snowboarding'), ('Skateboarding'), ('Gardening'), ('Science'), ('Cinema
 
 CREATE TABLE items (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  title VARCHAR(255) NOT NULL,
-  description VARCHAR(255) NOT NULL,
+  title VARCHAR(255) UNIQUE NOT NULL,
+  description TEXT NOT NULL,
   category INTEGER NOT NULL,
   owner INTEGER NOT NULL
 );

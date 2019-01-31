@@ -27,8 +27,8 @@ def show(category_name):
             'SELECT id, name FROM categories where name = ?', (category_name,)
         ).fetchone()
     items = create_connection().execute(
-            'SELECT id, description FROM items where category = ?', (category[0],)
-        ).fetchone()
+            'SELECT id, title FROM items where category = ?', (category[0],)
+        ).fetchall()
     return render_template('categories/show.jinja2', category=category, items=items)
 
 

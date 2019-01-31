@@ -3,19 +3,30 @@
 {% block title %}Categories{% endblock %}
 
 {% block head %}
-{{ super() }}
+    {{ super() }}
 {% endblock %}
 {% block content %}
 
-<br />
+    <br/>
 
-<h1>#{{ category[0] }} - {{ category[1] }}</h1>
+    <h1>#{{ category[0] }} - {{ category[1] }}</h1>
 
     <a href="{{ url_for('categories.delete', category_name=category[1]) }}" class="btn btn-danger">Remove</a>
-    <a href="{{ url_for('items.create', category_name=category[1]) }}" class="btn btn-danger">Add Item</a>
+    <a href="{{ url_for('items.create') }}" class="btn btn-success">Add Item</a>
 
+    <br/>
+    <br/>
+    <br/>
 
+    <ul class="list-group">
+        {% if items %}
+            {% for item in items %}
+                <a href="{{ url_for('items.show', item_title=item[1]) }}"
+                   class="list-group-item list-group-item-action">{{ item[1] }}</a>
+            {% endfor %}
+        {% endif %}
+    </ul>
 
-<br />
+    <br/>
 
 {% endblock %}
